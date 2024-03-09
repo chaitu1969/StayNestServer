@@ -201,13 +201,33 @@ app.post("/places", async (req, res) => {
 });
 
 // Get places by user
-app.get("/user-places", async (req, res) => {
-   const {token} = req.cookies;
-  JWT.verify(token, jwtSecret, {}, async (err, userData) => {
-   
-    res.json( await Place.find({owner:userData.id}) );
-  });
+app.get("/user-places", (req, res) => {
+   const { token } = req.cookies;
+   // Check if the token exists
+   if (!token) {
+     return res.status(401).json({ message: "No token provided, authorization denied" });
+   }
+
+   JWT.verify(token, jwtSecret, {}, (err, decoded) => {
+     if (err) {
+       // Handle the error if token verification fails
+       return res.status(401).json({ message: "Token is not valid" });
+     } else {
+       // Proceed with finding places owned by the user
+       Place.find({ owner: decoded.id })
+         .then(places => res.json(places))
+         .catch(error => res.status(500).json({ message: "Error fetching places", error }));
+     }
+   });
 });
+
+// app.get("/user-places", async (req, res) => {
+//    const {token} = req.cookies;
+//   JWT.verify(token, jwtSecret, {}, async (err, userData) => {
+//      if(err) return null;
+//     res.json( await Place.find({owner:userData.id}) );
+//   });
+// });
 
 // Get a specific place by ID
 app.get("/places/:id", async (req, res) => {
