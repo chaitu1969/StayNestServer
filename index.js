@@ -29,7 +29,8 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use(
   cors({
     credentials: true,
-    origin: "http://localhost:3000",
+    origin:
+      "https://stay-nest-client-res6wqph4-chaitanya-karles-projects.vercel.app",
   })
 );
 
@@ -150,6 +151,7 @@ app.post("/upload-by-link", async (req, res) => {
 
 // Upload using multer
 const photosMiddleware = multer({ dest: "uploads/" });
+
 app.post("/upload", photosMiddleware.array("photos", 100), (req, res) => {
   const uploadedFiles = req.files.map((file) => {
     const { path, originalname } = file;
