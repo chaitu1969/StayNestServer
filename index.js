@@ -204,8 +204,8 @@ app.post("/places", async (req, res) => {
 app.get("/user-places", async (req, res) => {
    const {token} = req.cookies;
   JWT.verify(token, jwtSecret, {}, async (err, userData) => {
-    const {id} = userData;
-    res.json( await Place.find({owner:id}) );
+   
+    res.json( await Place.find({owner:userData.id}) );
   });
 });
 
