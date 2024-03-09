@@ -30,7 +30,7 @@ app.use(
   cors({
     credentials: true,
     origin:
-      "https://stay-nest-client-res6wqph4-chaitanya-karles-projects.vercel.app",
+      "https://stay-nest-client-elrpo660j-chaitanya-karles-projects.vercel.app",
   })
 );
 
