@@ -201,7 +201,9 @@ app.post("/places", async (req, res) => {
 
 // Get places by user
 app.get("/user-places", async (req, res) => {
+  console.log(req.cookies);
   const userData = await getUserDataFromToken(req);
+  console.log(userData.id);
   res.json(await Place.find({ owner: userData.id }));
 });
 
