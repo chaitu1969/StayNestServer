@@ -30,7 +30,7 @@ app.use(
   cors({
     credentials: true,
     origin:
-      "https://main--bright-chebakia-be5e03.netlify.app",
+      "https://bright-chebakia-be5e03.netlify.app",
   })
 );
 
