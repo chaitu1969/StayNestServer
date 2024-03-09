@@ -202,11 +202,11 @@ app.post("/places", async (req, res) => {
 
 // Get places by user
 app.get("/user-places", async (req, res) => {
-  console.log("Prakash");
-  console.log(req.cookies);
-  const userData = await getUserDataFromToken(req);
-  console.log(userData.id);
-  res.json(await Place.find({ owner: userData.id }));
+   const {token} = req.cookies;
+  JWT.verify(token, jwtSecret, {}, async (err, userData) => {
+    const {id} = userData;
+    res.json( await Place.find({owner:id}) );
+  });
 });
 
 // Get a specific place by ID
