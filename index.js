@@ -30,7 +30,7 @@ app.use(
   cors({
     credentials: true,
     origin:
-      "https://stay-nest-client-elrpo660j-chaitanya-karles-projects.vercel.app",
+      "https://main--bright-chebakia-be5e03.netlify.app",
   })
 );
 
