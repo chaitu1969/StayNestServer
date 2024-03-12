@@ -29,7 +29,7 @@ app.use(cookieParser());
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use(
   cors({
-    origin: ["http://localhost:3000"],
+    origin: ["https://bright-chebakia-be5e03.netlify.app"],
     credentials: true,
     allowedHeaders: ["Content-Type", "Authorization"],
   })
