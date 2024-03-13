@@ -236,7 +236,7 @@ app.put("/places", async (req, res) => {
     price,
   } = req.body;
 
-  const userData = await getUserDataFromToken(req);
+  const userData = await getUserDataFromToken(token);
   const placeDoc = await Place.findById(id);
 
   if (userData.id === placeDoc.owner.toString()) {
